@@ -7,48 +7,48 @@ tasks:
   kafka-start:
     desc: Run kafka and zookeeper
     cmds:
-      - docker compose -f poc-kafka/docker-compose.yaml up -d
+      - docker compose -f kafka/docker-compose.yaml up -d
 
   kafka-stop:
     desc: Kill kafka and zookeeper
     cmds:
-      - docker compose -f poc-kafka/docker-compose.yaml stop kafka zookeeper
+      - docker compose -f kafka/docker-compose.yaml stop kafka zookeeper
       - docker stop control-center kafka zookeeper > /dev/null 2>&1 || true
 
   nats-start:
     desc: Run nats
     cmds:
-      - docker compose -f poc-nats/docker-compose.yaml up -d
+      - docker compose -f nats/docker-compose.yaml up -d
 
   nats-stop:
     desc: Kill nats
     cmds:
-      - docker compose -f poc-nats/docker-compose.yaml stop nats
+      - docker compose -f nats/docker-compose.yaml stop nats
       - docker stop nats-0 nats-1 nats-2 > /dev/null 2>&1 || true
 
   kafka-producer:
     desc: Run new producer for kafka
     cmds:
-      - go run poc-kafka/producer/main.go
+      - go run kafka/producer/main.go
 
   kafka-consumer:
     desc: Run new consumer for kafka
     cmds:
-      - go run poc-kafka/consumer/main.go
+      - go run kafka/consumer/main.go
 
   nats-producer:
     desc: Run new producer for nats
     cmds:
-      - go run poc-nats/producer/main.go
+      - go run nats/producer/main.go
   
   nats-consumer:
     desc: Run new consumer for nats
     cmds:
-      - go run poc-nats/consumer/main.go
+      - go run nats/consumer/main.go
 
   tidy:
     desc: Run go mod tidy
     cmds:
-      - cd poc-kafka && go mod tidy
-      - cd poc-nats && go mod tidy
+      - cd kafka && go mod tidy
+      - cd nats && go mod tidy
       

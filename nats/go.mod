@@ -1,4 +1,4 @@
-module poc-nats
+module nats
 
 go 1.21.5
 
