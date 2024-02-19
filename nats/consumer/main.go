@@ -11,8 +11,8 @@ import (
 
 func main() {
 	sigChan := make(chan os.Signal, 1)
-
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+	///////
 
 	nc, err := nats.Connect(os.Getenv("NATS_URL"))
 	if err != nil {
@@ -35,5 +35,6 @@ func main() {
 		})
 	}()
 
+	///////
 	<-sigChan
 }

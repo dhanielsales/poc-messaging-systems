@@ -35,6 +35,8 @@ func setupTopics() {
 		panic(err)
 	}
 
+	fmt.Println("Creating topic", topic, "with", p, "partitions")
+
 	_, err = c.CreateTopics(context.Background(), []kafka.TopicSpecification{{
 		Topic:             topic,
 		NumPartitions:     p,
